@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Todo from './Todo';
 import TodoProps from './TodoProps';
 import NewTodoForm from './NewTodoForm';
+import './todo.css';
 
 // Tableau d'objets todos
 let todosList = [
@@ -16,6 +17,9 @@ function TodoList() {
     // Variables d'état
     const [todos, setTodos] = useState(todosList);
     const [filteredTodos, setFilteredTodos] = useState(todosList);
+
+    // Création de nouvelle liste
+    const [listTodos, setListTodos] = useState([]);
 
     // Déclenchement au rendu initial du composant
     useEffect(() => {
@@ -69,52 +73,37 @@ function TodoList() {
 
     return (
         <>
-
+            <div className='row'>
+                <label>Filtre Todo</label>
+                <input type='text' onChange={(e) => handleFilterTodoChange(e.target.value)} className="form-control mb-2" />
+            </div>
             <div className='row'>
 
-            <h1>Liste des tâches</h1>
+                <h1>Liste de tâches</h1>
 
-                <div className='col-md-6'>
-                    <table className='table table-hover table-responsive'>
-                        <thead>
-                            <tr>
-                                <th scope='col'>
-                                    Tâches
-                                </th>
-                                <th scope='col'>
-                                    Actions
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filteredTodos.length > 0 ? (
-                                filteredTodos.map((todo, index) =>
-                                    <Todo
-                                        key={index}
-                                        id={index}
-                                        TodoProps={todo}
-                                        onDelete={(index) => handleTodoDelete(index)}
-                                        onModification={(newName) => handleTodoModification(index,newName)}
-                                        onState={(index) => handleTodoState(index)}
-                                    />
-                                )
-                            ) : (
-                                <tr>
-                                    <td colSpan={5} className='tex-center'>
-                                        Aucune tâche trouvé ...
-                                    </td>
-                                </tr>
-                            )
-                            }
-                        </tbody>
-                    </table>
-                </div>
-                <div className='col-md-6'>
-                    <label>Filtre Todo</label>
-                    <input type='text' onChange={(e) => handleFilterTodoChange(e.target.value)} className="form-control mb-2" />
+                <div className='col-lg-4 todo-app'>
                     <NewTodoForm onSubmit={(data) => handleNewTodoFormSubmit(data)} />
+                    <ul>
+                        {filteredTodos.length > 0 ? (
+                            filteredTodos.map((todo, index) =>
+                                <Todo
+                                    key={index}
+                                    id={index}
+                                    TodoProps={todo}
+                                    onDelete={(index) => handleTodoDelete(index)}
+                                    onModification={(newName) => handleTodoModification(index, newName)}
+                                    onState={(index) => handleTodoState(index)}
+                                />
+                            )
+                        ) : (
+                            <li className='tex-center'>
+                                Aucune tâche trouvé ...
+                            </li>
+                        )}
+                    </ul>
                 </div>
             </div>
+
         </>
     )
 }

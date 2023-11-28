@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Button from '../Button/Button';
+import './todo.css';
 
 function Todo({ id, TodoProps, onDelete, onModification, onState }) {
 
     // Variables d'état sur le CSS lors du click sur une tâche
-    const [color, setColor] = useState("table-default");
-    const [textDecoration, setTextDecoration] = useState("");
+    const [color, setColor] = useState("todo-unchecked");
 
     // Variables d'état pour modification des tâches
     const [isEditing, setIsEditing] = useState(false);
@@ -60,17 +60,15 @@ function Todo({ id, TodoProps, onDelete, onModification, onState }) {
     // On effet les actions en fonction de la réponse de la propriété state afin de changer les styles
     useEffect(() => {
         if (TodoProps.state === false) {
-            setColor("table-secondary");
-            setTextDecoration("line-through");
+            setColor("todo-checked");
         } else {
-            setColor("table-default");
-            setTextDecoration("");
+            setColor("todo-unchecked");
         }
     }, [TodoProps.state]);
 
     return <>
-        <tr className={color} onClick={(e) => handleTodoState(e)}>
-            <td style={{ textDecoration: textDecoration }}>
+        <li className={color} onClick={(e) => handleTodoState(e)}>
+            <div>
                 {isEditing ? (
                     <input
                         type='text'
@@ -81,16 +79,20 @@ function Todo({ id, TodoProps, onDelete, onModification, onState }) {
                 ) : (
                     TodoProps.name
                 )}
-            </td>
-            <td>
-                <Button text="Supprimer" type="danger" onClick={(e) => handleDelete(e)}>
-                    <i className='bi bi-trash'></i>
-                </Button>
-                <Button text="Modifier" type="info" onClick={(e) => handleModification(e)}>
-                    <i className='bi bi-pen'></i>
-                </Button>
-            </td>
-        </tr>
+            </div>
+            <div className='actions'>
+                <span>
+                    <Button text="Modifier" type="" onClick={(e) => handleModification(e)}>
+                        <i className='bi bi-pen grey-icon'></i>
+                    </Button>
+                </span>
+                <span>
+                    <Button text="Supprimer" type="" onClick={(e) => handleDelete(e)}>
+                        <i className='bi bi-trash grey-icon'></i>
+                    </Button>
+                </span>
+            </div>
+        </li>
     </>
 }
 

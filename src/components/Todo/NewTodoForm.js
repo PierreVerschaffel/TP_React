@@ -1,5 +1,6 @@
 import React from 'react'
 import TodoProps from './TodoProps';
+import './todo.css';
 
 function NewTodoForm({ onSubmit }) {
 
@@ -17,12 +18,9 @@ function NewTodoForm({ onSubmit }) {
     }
 
     return (
-            <form onSubmit={(e) => handleSubmit(e)}>
-                        <label>Tâche</label>
-                        <div className='d-flex justify-content-between'>
-                        <input type='text' name='name' className="form-control" />
-                        <button className='btn btn-primary'>Ajouter</button>
-                        </div>
+            <form onSubmit={(e) => handleSubmit(e)} className='add-todo'>
+                        <input type='text' name='name' placeholder='ajouter une tâche' className='add-todo-input'/>
+                        <button className='add-todo-btn'>Ajouter</button>
             </form>
     )
 }
