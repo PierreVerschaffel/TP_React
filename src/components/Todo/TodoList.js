@@ -18,9 +18,6 @@ function TodoList() {
     const [todos, setTodos] = useState(todosList);
     const [filteredTodos, setFilteredTodos] = useState(todosList);
 
-    // Création de nouvelle liste
-    const [listTodos, setListTodos] = useState([]);
-
     // Déclenchement au rendu initial du composant
     useEffect(() => {
         setTodos(todosList)
@@ -74,14 +71,14 @@ function TodoList() {
     return (
         <>
             <div className='row'>
-                <label>Filtre Todo</label>
-                <input type='text' onChange={(e) => handleFilterTodoChange(e.target.value)} className="form-control mb-2" />
-            </div>
-            <div className='row'>
-
-                <h1>Liste de tâches</h1>
-
-                <div className='col-lg-4 todo-app'>
+                <div className='todo-app'>
+                    <div className='add-todo'>
+                        <input
+                            type='text'
+                            placeholder='Rechercher une tâche'
+                            onChange={(e) => handleFilterTodoChange(e.target.value)}
+                            className="filter-todo-btn" />
+                    </div>
                     <NewTodoForm onSubmit={(data) => handleNewTodoFormSubmit(data)} />
                     <ul>
                         {filteredTodos.length > 0 ? (
@@ -103,7 +100,6 @@ function TodoList() {
                     </ul>
                 </div>
             </div>
-
         </>
     )
 }

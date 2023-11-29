@@ -67,7 +67,7 @@ function Todo({ id, TodoProps, onDelete, onModification, onState }) {
     }, [TodoProps.state]);
 
     return <>
-        <li className={color} onClick={(e) => handleTodoState(e)}>
+        <li className={color + " todo-task"} onClick={(e) => handleTodoState(e)}>
             <div>
                 {isEditing ? (
                     <input
