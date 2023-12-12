@@ -55,6 +55,11 @@
 .add-todo-btn:hover{
     filter: brightness(.8);
 }
+.add-todo-list-btn{
+    min-width: 400px;
+    width:30%;
+    margin: 10px 20px;
+}
 
 .add-todo-list-btn button{
     margin-top: 10px;
@@ -77,14 +82,13 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 .todo-list{
     min-width: 400px;
     width:30%;
-    margin-left: 5px;
-    margin-top: 5px;
+    margin: 10px 20px;
 }
 
 ul{
@@ -148,4 +152,19 @@ span{
 
 span:hover{
     background-color: #c9c9c9;
+}
+
+.delete-todo-list-btn{
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background-color: #ff5945;
+    border: 0px;
+    height: 50px;
+    padding: 10px;
+    color: #efefef;
+    font-size: 18px;
+}
+
+.delete-todo-list-btn:hover{
+    filter: brightness(.8);
 }

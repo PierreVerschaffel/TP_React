@@ -30,9 +30,10 @@ function TodoList() {
     }, [todos]);
 
     // Gestion de l'affiche en fonction du filtre sur les noms de mes tâches
+    // startsWith qui me permet de filtrer sans avoir à écrire exactement le name de la tâche
     const handleFilterTodoChange = (value) => {
         if (value !== "") {
-            const filteredTodos = todos.filter(todo => todo.name === value);
+            const filteredTodos = todos.filter(todo => todo.name.toLowerCase().startsWith(value.toLowerCase()));
             setFilteredTodos(filteredTodos);
         } else {
             setFilteredTodos(todosList);

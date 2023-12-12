@@ -82,12 +82,12 @@ function Todo({ id, TodoProps, onDelete, onModification, onState }) {
             </div>
             <div className='actions'>
                 <span>
-                    <Button text="Modifier" type="" onClick={(e) => handleModification(e)}>
+                    <Button text="Modifier" type="btn" onClick={(e) => handleModification(e)}>
                         <i className='bi bi-pen grey-icon'></i>
                     </Button>
                 </span>
                 <span>
-                    <Button text="Supprimer" type="" onClick={(e) => handleDelete(e)}>
+                    <Button text="Supprimer" type="btn" onClick={(e) => handleDelete(e)}>
                         <i className='bi bi-trash grey-icon'></i>
                     </Button>
                 </span>
