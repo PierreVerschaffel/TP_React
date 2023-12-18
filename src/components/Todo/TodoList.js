@@ -20,13 +20,13 @@ function TodoList() {
 
     // Déclenchement au rendu initial du composant
     useEffect(() => {
-        setTodos(todosList)
-        setFilteredTodos(todosList)
+        setTodos(todosList);
+        setFilteredTodos(todosList);
     }, []);
 
     // Déclenchement lors de la modification des tâches en fonction du filtre
     useEffect(() => {
-        setFilteredTodos(todos)
+        setFilteredTodos(todos);
     }, [todos]);
 
     // Gestion de l'affiche en fonction du filtre sur les noms de mes tâches

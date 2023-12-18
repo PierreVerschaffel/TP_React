@@ -43,7 +43,7 @@ function Todo({ id, TodoProps, onDelete, onModification, onState }) {
             // On évite les champs vide
             if (editedName.trim() !== '') {
                 setIsEditing(false);
-                onModification(editedName)
+                onModification(editedName);
             }
         }
     }
