@@ -57,7 +57,6 @@ function TodoList() {
     // On modifie la propriété state de l'élément clicker en fonction de son index
     const handleTodoState = (index) => {
         let newTodosList = [...todos];
-
         newTodosList[index] = { ...newTodosList[index], state: !newTodosList[index].state };
         setTodos(newTodosList);
     }

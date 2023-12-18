@@ -32,7 +32,7 @@ function Todos() {
   return (
     <>
       <div className='todos'>
-        {todoLists.map(({ id }, index) => (
+        {todoLists.map(({id}) => (
           <div key={id} className='todo-list'>
             <TodoList key={id} />
             <Button text="Supprimer" type="" onClick={() => handleDeleteList(id)} CSSclass={"delete-todo-list-btn"}>
