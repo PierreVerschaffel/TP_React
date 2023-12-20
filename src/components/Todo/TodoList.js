@@ -12,15 +12,26 @@ let todosList = [
     new TodoProps("Test")
 ]
 
+
+
+
 function TodoList() {
 
     // Variables d'état
     const [todos, setTodos] = useState(todosList);
     const [filteredTodos, setFilteredTodos] = useState(todosList);
 
+    // if(localStorage.getItem('todo')){
+    //     let olderTodo=[localStorage.getItem('todo')]+[JSON.stringify(todosList)];
+    //     localStorage.setItem('todo',olderTodo);
+    // }else{
+    //     localStorage.setItem('todo',JSON.stringify(todosList))
+    // }
+
     // Déclenchement au rendu initial du composant
     useEffect(() => {
-        setTodos(todosList);
+        const newTodos = [...todosList];
+        setTodos(newTodos);
         setFilteredTodos(todosList);
     }, []);
 
@@ -33,18 +44,21 @@ function TodoList() {
     // startsWith qui me permet de filtrer sans avoir à écrire exactement le name de la tâche
     const handleFilterTodoChange = (value) => {
         if (value !== "") {
-            const filteredTodos = todos.filter(todo => todo.name.toLowerCase().startsWith(value.toLowerCase()));
+            const filteredTodos = todos.filter(todo => todo.name.toLowerCase().includes(value.toLowerCase()));
             setFilteredTodos(filteredTodos);
         } else {
-            setFilteredTodos(todosList);
+            setFilteredTodos(todos);
         }
     }
 
     // Suppression d'une tâche en fonction de son index
-    const handleTodoDelete = (index) => {
-        let newTodosList = [...todos];
-        newTodosList.splice(index, 1);
-        setTodos(newTodosList);
+    const handleTodoDelete = (id) => {
+        console.log(id);
+        // let newTodosList = [...todos];
+        // newTodosList.splice(index, 1);
+        // setTodos(newTodosList);
+        const newTodoList = todosList.filter(todosList => todosList.id !== id);
+        setTodos(newTodoList);
     }
 
     // On modifie le name d'une tâche en fonction de son index et de la valeur l'input envoyé
@@ -85,9 +99,9 @@ function TodoList() {
                             filteredTodos.map((todo, index) =>
                                 <Todo
                                     key={index}
-                                    id={index}
+                                    id={todo.id}
                                     TodoProps={todo}
-                                    onDelete={(index) => handleTodoDelete(index)}
+                                    onDelete={(id) => handleTodoDelete(id)}
                                     onModification={(newName) => handleTodoModification(index, newName)}
                                     onState={(index) => handleTodoState(index)}
                                 />
