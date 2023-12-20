@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Button from '../Button/Button';
 import './todo.css';
 
-function Todo({ id, TodoProps, onDelete, onModification, onState }) {
+function Todo({ id,index ,TodoProps, onDelete, onModification, onState }) {
 
     // Variables d'état sur le CSS lors du click sur une tâche
     const [color, setColor] = useState("todo-unchecked");
@@ -28,7 +28,7 @@ function Todo({ id, TodoProps, onDelete, onModification, onState }) {
     const handleTodoState = (e) => {
         // Je vérifie si le click est ailleur que sur mon input pour éviter de changer son état lors d'une modification
         if (e.target.tagName.toLowerCase() !== 'input') {
-            onState(id);
+            onState(index);
         }
     }
 

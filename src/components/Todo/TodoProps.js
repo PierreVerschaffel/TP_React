@@ -1,9 +1,9 @@
 class TodoProps {
-    constructor(name, state = true, id){
+    constructor(name, state = true){
 
         this.name = name;
         this.state = state;
-        this.id=this.generateUniqueId()
+        this.id=this.generateUniqueId();
     }
 
     generateUniqueId() {

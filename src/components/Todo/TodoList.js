@@ -12,9 +12,6 @@ let todosList = [
     new TodoProps("Test")
 ]
 
-
-
-
 function TodoList() {
 
     // Variables d'état
@@ -30,9 +27,7 @@ function TodoList() {
 
     // Déclenchement au rendu initial du composant
     useEffect(() => {
-        const newTodos = [...todosList];
-        setTodos(newTodos);
-        setFilteredTodos(todosList);
+        setTodos(todosList);
     }, []);
 
     // Déclenchement lors de la modification des tâches en fonction du filtre
@@ -41,7 +36,7 @@ function TodoList() {
     }, [todos]);
 
     // Gestion de l'affiche en fonction du filtre sur les noms de mes tâches
-    // startsWith qui me permet de filtrer sans avoir à écrire exactement le name de la tâche
+    // includes qui me permet de filtrer sans avoir à écrire exactement le name de la tâche
     const handleFilterTodoChange = (value) => {
         if (value !== "") {
             const filteredTodos = todos.filter(todo => todo.name.toLowerCase().includes(value.toLowerCase()));
@@ -53,11 +48,8 @@ function TodoList() {
 
     // Suppression d'une tâche en fonction de son index
     const handleTodoDelete = (id) => {
-        console.log(id);
-        // let newTodosList = [...todos];
-        // newTodosList.splice(index, 1);
-        // setTodos(newTodosList);
-        const newTodoList = todosList.filter(todosList => todosList.id !== id);
+        let todoList = [...todos];
+        let newTodoList = todoList.filter(todo => todo.id !== id);
         setTodos(newTodoList);
     }
 
@@ -70,6 +62,7 @@ function TodoList() {
 
     // On modifie la propriété state de l'élément clicker en fonction de son index
     const handleTodoState = (index) => {
+        console.log(index);
         let newTodosList = [...todos];
         newTodosList[index] = { ...newTodosList[index], state: !newTodosList[index].state };
         setTodos(newTodosList);
@@ -100,6 +93,7 @@ function TodoList() {
                                 <Todo
                                     key={index}
                                     id={todo.id}
+                                    index={index}
                                     TodoProps={todo}
                                     onDelete={(id) => handleTodoDelete(id)}
                                     onModification={(newName) => handleTodoModification(index, newName)}
