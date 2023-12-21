@@ -1,3 +1,7 @@
+/**
+* @param {string} name
+* @param {boolean} state
+*/
 class TodoProps {
     constructor(name, state = true){
 

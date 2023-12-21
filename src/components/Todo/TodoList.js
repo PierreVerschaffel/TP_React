@@ -18,31 +18,22 @@ function TodoList() {
     const [todos, setTodos] = useState(todosList);
     const [filteredTodos, setFilteredTodos] = useState(todosList);
 
-    // if(localStorage.getItem('todo')){
-    //     let olderTodo=[localStorage.getItem('todo')]+[JSON.stringify(todosList)];
-    //     localStorage.setItem('todo',olderTodo);
-    // }else{
-    //     localStorage.setItem('todo',JSON.stringify(todosList))
-    // }
-
     // Déclenchement au rendu initial du composant
     useEffect(() => {
         setTodos(todosList);
     }, []);
-
+    
     // Déclenchement lors de la modification des tâches en fonction du filtre
     useEffect(() => {
         setFilteredTodos(todos);
     }, [todos]);
-
-    // Gestion de l'affiche en fonction du filtre sur les noms de mes tâches
+    
+    // Gestion de l'affichage en fonction du filtre sur les noms de mes tâches
     // includes qui me permet de filtrer sans avoir à écrire exactement le name de la tâche
     const handleFilterTodoChange = (value) => {
         if (value !== "") {
-            const filteredTodos = todos.filter(todo => todo.name.toLowerCase().includes(value.toLowerCase()));
+            let filteredTodos = todos.filter(todo => todo.name.toLowerCase().includes(value.toLowerCase()));
             setFilteredTodos(filteredTodos);
-        } else {
-            setFilteredTodos(todos);
         }
     }
 
@@ -62,7 +53,6 @@ function TodoList() {
 
     // On modifie la propriété state de l'élément clicker en fonction de son index
     const handleTodoState = (index) => {
-        console.log(index);
         let newTodosList = [...todos];
         newTodosList[index] = { ...newTodosList[index], state: !newTodosList[index].state };
         setTodos(newTodosList);
