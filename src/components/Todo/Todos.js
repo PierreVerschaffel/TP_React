@@ -8,7 +8,7 @@ function generateUniqueId() {
 }
 
 function Todos() {
-  // Je stocke les listes de tâches dans une constante il il n'y en a pas alors je renvoies un tableau vide
+  // Je stocke les listes de tâches dans une constante si il n'y en a pas alors je renvoies un tableau vide
   const initialTodoLists = JSON.parse(localStorage.getItem('todoLists')) || [];
   const [todoLists, setTodoLists] = useState(initialTodoLists);
 
